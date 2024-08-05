@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "targeted",
+  "version": "${version}",
+  "name": "Targeted",
+  "description": "",
+  "authors": ["Creray"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/targeted/icon.png",
+  "environment": "client",
+  "entrypoints": {},
+  "mixins": [
+    "targeted.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}"
+  }
+}
