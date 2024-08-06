@@ -4,7 +4,8 @@
   "package": "io.creray.targeted.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "GuiMixin"
+    "GuiMixin",
+    "GameRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
