@@ -14,8 +14,15 @@ public final class Modes {
             new SpriteAnimation(CrosshairSprite.HEALTH_INDICATOR)
     );
 
-    public static final Mode DOT_MODE = new SimpleMode(
+    public static final Mode CIRCLE = new SimpleMode(
             3, new SpriteAnimation(CrosshairSprite.SHRINK)
+    );
+
+    public static final Mode EXPANDED = new SimpleMode(
+            3, new SpriteAnimation(
+                    CrosshairSprite.EXPAND[0],
+                    CrosshairSprite.EXPAND[1]
+            )
     );
 
     private Modes() {}

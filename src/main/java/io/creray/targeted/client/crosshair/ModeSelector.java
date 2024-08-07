@@ -3,6 +3,7 @@ package io.creray.targeted.client.crosshair;
 import io.creray.targeted.client.target.BlockTarget;
 import io.creray.targeted.client.target.EntityTarget;
 import io.creray.targeted.client.target.Target;
+import io.creray.targeted.util.BlockUtils;
 import io.creray.targeted.util.EntityUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -26,10 +27,13 @@ public final class ModeSelector {
         if (entity instanceof LivingEntity livingEntity) {
             return Modes.HEALTH_INDICATOR.with(() -> EntityUtils.healthPercent(livingEntity));
         }
-        return Modes.DOT_MODE;
+        return Modes.CIRCLE;
     }
 
     public static Mode selectBlockMode(BlockState state, BlockPos position) {
+        if (BlockUtils.isWaxed(state.getBlock())) {
+            return Modes.EXPANDED;
+        }
         return Modes.DEFAULT;
     }
 

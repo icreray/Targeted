@@ -9,8 +9,8 @@ public record CrosshairSprite(ResourceLocation resourceLocation) {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
 
-    public static final CrosshairSprite DEFAULT = CrosshairSprite.from("hud/crosshair_default");
     public static final CrosshairSprite EMPTY = CrosshairSprite.from("hud/empty");
+    public static final CrosshairSprite DEFAULT = CrosshairSprite.from("hud/crosshair_default");
 
     public static final CrosshairSprite[] SHRINK = {
             CrosshairSprite.from("hud/crosshair_shrink_0"),

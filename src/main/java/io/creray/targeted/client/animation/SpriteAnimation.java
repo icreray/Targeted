@@ -4,7 +4,7 @@ public final class SpriteAnimation {
 
     private final CrosshairSprite[] FRAMES;
 
-    public SpriteAnimation(CrosshairSprite[] frames) {
+    public SpriteAnimation(CrosshairSprite ... frames) {
         FRAMES = frames;
     }
 
