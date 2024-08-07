@@ -1,7 +1,6 @@
 package io.creray.targeted;
 
-import io.creray.targeted.client.Crosshair;
-import net.minecraft.client.Minecraft;
+import io.creray.targeted.client.crosshair.Crosshair;
 
 public final class Targeted {
 
@@ -10,7 +9,7 @@ public final class Targeted {
     public static final Crosshair crosshair;
 
     static {
-        crosshair = new Crosshair(Minecraft.getInstance());
+        crosshair = new Crosshair();
     }
 
     private Targeted() {}
