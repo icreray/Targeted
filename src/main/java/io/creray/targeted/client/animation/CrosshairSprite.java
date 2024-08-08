@@ -9,31 +9,31 @@ public record CrosshairSprite(ResourceLocation resourceLocation) {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
 
-    public static final CrosshairSprite EMPTY = CrosshairSprite.from("hud/empty");
-    public static final CrosshairSprite DEFAULT = CrosshairSprite.from("hud/crosshair_default");
+    public static final CrosshairSprite EMPTY = CrosshairSprite.from("crosshair/empty");
+    public static final CrosshairSprite DEFAULT = CrosshairSprite.from("crosshair/default");
 
     public static final CrosshairSprite[] SHRINK = {
-            CrosshairSprite.from("hud/crosshair_shrink_0"),
-            CrosshairSprite.from("hud/crosshair_shrink_1"),
-            CrosshairSprite.from("hud/crosshair_shrink_2")
+            CrosshairSprite.from("crosshair/shrink_0"),
+            CrosshairSprite.from("crosshair/shrink_1"),
+            CrosshairSprite.from("crosshair/shrink_2")
     };
 
     public static final CrosshairSprite[] EXPAND = {
-            CrosshairSprite.from("hud/crosshair_expand_0"),
-            CrosshairSprite.from("hud/crosshair_expand_1"),
-            CrosshairSprite.from("hud/crosshair_expand_2")
+            CrosshairSprite.from("crosshair/expand_0"),
+            CrosshairSprite.from("crosshair/expand_1"),
+            CrosshairSprite.from("crosshair/expand_2")
     };
 
     public static final CrosshairSprite[] HEALTH_INDICATOR = {
             EMPTY,
-            CrosshairSprite.from("hud/health_indicator_0"),
-            CrosshairSprite.from("hud/health_indicator_1"),
-            CrosshairSprite.from("hud/health_indicator_2"),
-            CrosshairSprite.from("hud/health_indicator_3"),
-            CrosshairSprite.from("hud/health_indicator_4"),
-            CrosshairSprite.from("hud/health_indicator_5"),
-            CrosshairSprite.from("hud/health_indicator_6"),
-            CrosshairSprite.from("hud/health_indicator_7")
+            CrosshairSprite.from("crosshair/health_indicator_0"),
+            CrosshairSprite.from("crosshair/health_indicator_1"),
+            CrosshairSprite.from("crosshair/health_indicator_2"),
+            CrosshairSprite.from("crosshair/health_indicator_3"),
+            CrosshairSprite.from("crosshair/health_indicator_4"),
+            CrosshairSprite.from("crosshair/health_indicator_5"),
+            CrosshairSprite.from("crosshair/health_indicator_6"),
+            CrosshairSprite.from("crosshair/health_indicator_7")
     };
 
     public static CrosshairSprite from(String path) {
