@@ -1,5 +1,8 @@
 package io.creray.targeted.client.crosshair;
 
+import io.creray.targeted.client.crosshair.mode.Mode;
+import io.creray.targeted.client.crosshair.mode.ModeSelector;
+import io.creray.targeted.client.crosshair.mode.Modes;
 import io.creray.targeted.client.target.Target;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
