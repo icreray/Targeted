@@ -15,7 +15,11 @@ public final class Mode {
 
     private TargetContext context;
 
-    public Mode(
+    public static ModeBuilder builder() {
+        return new ModeBuilder();
+    }
+
+    Mode(
             Slider[] sliders,
             SliderController[] controllers,
             Animation[] animations
