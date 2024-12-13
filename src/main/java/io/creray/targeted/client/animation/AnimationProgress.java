@@ -59,11 +59,11 @@ public final class AnimationProgress {
         return currentTime == 0;
     }
 
-    public float getProgress() {
+    public float get() {
         return currentTime / DURATION;
     }
 
-    public float getMinProgress(AnimationProgress other) {
-        return Math.min(getProgress(), other.getProgress());
+    public float limitedBy(AnimationProgress other) {
+        return Math.min(get(), other.get());
     }
 }

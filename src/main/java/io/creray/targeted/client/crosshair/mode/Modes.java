@@ -1,4 +1,4 @@
-package io.creray.targeted.client.crosshair;
+package io.creray.targeted.client.crosshair.mode;
 
 import io.creray.targeted.client.animation.CrosshairSprite;
 import io.creray.targeted.client.animation.SpriteAnimation;

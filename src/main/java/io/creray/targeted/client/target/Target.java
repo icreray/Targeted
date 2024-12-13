@@ -40,4 +40,8 @@ public sealed interface Target
             default -> empty();
         };
     }
+
+    default boolean is(Target other) {
+        return this.equals(other);
+    }
 }

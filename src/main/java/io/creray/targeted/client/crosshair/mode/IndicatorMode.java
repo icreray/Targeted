@@ -1,4 +1,4 @@
-package io.creray.targeted.client.crosshair;
+package io.creray.targeted.client.crosshair.mode;
 
 import io.creray.targeted.client.animation.AnimationProgress;
 import io.creray.targeted.client.animation.SpriteAnimation;
@@ -48,7 +48,7 @@ public final class IndicatorMode extends SimpleMode {
 
         indicator.update(deltaTracker.getGameTimeDeltaTicks());
         indicatorAnimation
-                .getFrame(indicator.getMinProgress(transition))
+                .getFrame(indicator.limitedBy(transition))
                 .renderAtCenter(guiRenderer);
     }
 }

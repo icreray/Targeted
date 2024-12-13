@@ -1,4 +1,4 @@
-package io.creray.targeted.client.crosshair;
+package io.creray.targeted.client.crosshair.mode;
 
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;

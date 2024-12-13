@@ -1,5 +1,7 @@
 package io.creray.targeted.client.crosshair;
 
+import io.creray.targeted.client.crosshair.mode.Mode;
+import io.creray.targeted.client.crosshair.mode.Modes;
 import io.creray.targeted.client.target.BlockTarget;
 import io.creray.targeted.client.target.EntityTarget;
 import io.creray.targeted.client.target.Target;
@@ -30,7 +32,7 @@ public final class ModeSelector {
         return Modes.CIRCLE;
     }
 
-    public static Mode selectBlockMode(BlockState state, BlockPos position) {
+    public static Mode selectBlockMode(BlockState state, BlockPos ignoredPosition) {
         if (BlockUtils.isWaxed(state.getBlock())) {
             return Modes.EXPANDED;
         }

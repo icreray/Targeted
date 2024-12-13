@@ -9,7 +9,7 @@ public final class SpriteAnimation {
     }
 
     public CrosshairSprite getFrame(AnimationProgress progress) {
-        return getFrame(progress.getProgress());
+        return getFrame(progress.get());
     }
 
     public CrosshairSprite getFrame(float progress) {
