@@ -20,7 +20,7 @@ public final class GameRendererMixin {
     private Minecraft minecraft;
 
     @Inject(
-            method = "Lnet/minecraft/client/renderer/GameRenderer;pick(F)V",
+            method = "pick(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/util/profiling/ProfilerFiller;pop()V",

@@ -2,7 +2,7 @@ package io.creray.targeted.client.animation;
 
 import io.creray.targeted.util.ModResource;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.ResourceLocation;
 
 public record CrosshairSprite(ResourceLocation resourceLocation) {
@@ -44,6 +44,6 @@ public record CrosshairSprite(ResourceLocation resourceLocation) {
     public void renderAtCenter(GuiGraphics guiGraphics) {
         var x = (guiGraphics.guiWidth() - WIDTH) / 2;
         var y = (guiGraphics.guiHeight() - HEIGHT) / 2;
-        guiGraphics.blitSprite(RenderType::crosshair, resourceLocation, x, y, WIDTH, HEIGHT);
+        guiGraphics.blitSprite(RenderPipelines.CROSSHAIR, resourceLocation, x, y, WIDTH, HEIGHT);
     }
 }
