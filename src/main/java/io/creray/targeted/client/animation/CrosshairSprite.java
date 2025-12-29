@@ -1,11 +1,11 @@
 package io.creray.targeted.client.animation;
 
-import io.creray.targeted.util.ModResource;
+import io.creray.targeted.util.ModIdentifier;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
-public record CrosshairSprite(ResourceLocation resourceLocation) {
+public record CrosshairSprite(Identifier resourceLocation) {
 
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
@@ -38,7 +38,7 @@ public record CrosshairSprite(ResourceLocation resourceLocation) {
     };
 
     public static CrosshairSprite from(String path) {
-        return new CrosshairSprite(ModResource.of(path));
+        return new CrosshairSprite(ModIdentifier.of(path));
     }
 
     public void renderAtCenter(GuiGraphics guiGraphics) {
