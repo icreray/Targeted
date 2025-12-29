@@ -1,7 +1,7 @@
 package io.creray.targeted.mixin;
 
 import io.creray.targeted.Targeted;
-import io.creray.targeted.client.target.Target;
+import io.creray.targeted.client.Target;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Final;

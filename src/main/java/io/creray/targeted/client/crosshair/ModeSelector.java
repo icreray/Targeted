@@ -2,9 +2,7 @@ package io.creray.targeted.client.crosshair;
 
 import io.creray.targeted.client.crosshair.mode.Mode;
 import io.creray.targeted.client.crosshair.mode.Modes;
-import io.creray.targeted.client.target.BlockTarget;
-import io.creray.targeted.client.target.EntityTarget;
-import io.creray.targeted.client.target.Target;
+import io.creray.targeted.client.Target;
 import io.creray.targeted.util.BlockUtils;
 import io.creray.targeted.util.EntityUtils;
 import net.minecraft.core.BlockPos;
@@ -16,12 +14,12 @@ public final class ModeSelector {
 
     public static Mode selectFor(Target target) {
         return switch (target) {
-            case EntityTarget(var entity) ->
-                    selectEntityMode(entity);
-            case BlockTarget(var state, var position) ->
-                    selectBlockMode(state, position);
+            case Target.Entity(var entity) ->
+                selectEntityMode(entity);
+            case Target.Block(var state, var position) ->
+                selectBlockMode(state, position);
             default ->
-                    Modes.DEFAULT;
+                Modes.DEFAULT;
         };
     }
 
