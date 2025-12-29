@@ -1,13 +1,13 @@
 package io.creray.targeted.util;
 
 import io.creray.targeted.Targeted;
+import lombok.experimental.UtilityClass;
 import net.minecraft.resources.Identifier;
 
-public final class ModIdentifier {
+@UtilityClass
+public class ModIdentifier {
 
-    public static Identifier of(String path) {
+    public Identifier of(String path) {
         return Identifier.fromNamespaceAndPath(Targeted.MOD_ID, path);
     }
-
-    private ModIdentifier() {}
 }

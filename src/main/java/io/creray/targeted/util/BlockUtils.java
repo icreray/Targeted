@@ -1,13 +1,13 @@
 package io.creray.targeted.util;
 
+import lombok.experimental.UtilityClass;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.level.block.Block;
 
-public final class BlockUtils {
+@UtilityClass
+public class BlockUtils {
 
-    public static boolean isWaxed(Block block) {
+    public boolean isWaxed(Block block) {
         return HoneycombItem.WAXABLES.get().containsValue(block);
     }
-
-    private BlockUtils() {}
 }
