@@ -12,7 +12,7 @@ public final class Crosshair {
     private Target target;
     private Mode currentMode;
     @Nullable
-    private Mode nextMode;
+    private Mode pendingMode;
 
     {
         target = Target.empty();
@@ -27,7 +27,7 @@ public final class Crosshair {
 
     public void tick() {
         currentMode.tick();
-        if (nextMode != null && currentMode.canBeSwitched()) {
+        if (pendingMode != null && currentMode.canBeSwitched()) {
             switchToNextMode();
         }
     }
@@ -39,19 +39,19 @@ public final class Crosshair {
     private void selectNextMode() {
         var selectedMode = ModeSelector.selectFor(target);
         if (selectedMode == currentMode) {
-            nextMode = null;
+            pendingMode = null;
             currentMode.enable();
         }
         else {
-            nextMode = selectedMode;
+            pendingMode = selectedMode;
             currentMode.disable();
         }
     }
 
     private void switchToNextMode() {
-        assert nextMode != null;
-        currentMode = nextMode;
+        assert pendingMode != null;
+        currentMode = pendingMode;
         currentMode.enable();
-        nextMode = null;
+        pendingMode = null;
     }
 }
