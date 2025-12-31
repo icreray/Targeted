@@ -35,7 +35,7 @@ public final class Modes {
             .addTrack(transition, TrackControllers.TRANSITION_PROGRESS)
             .addTrack(indicator, TrackControllers.HEALTH_PERCENT)
             .addAnimation(transition::get, CrosshairSprite.EXPAND)
-            .addAnimation(() -> transition.limitedBy(indicator), CrosshairSprite.HEALTH_INDICATOR)
+            .addAnimation(Track.Driver.limitedBy(indicator, transition), CrosshairSprite.HEALTH_INDICATOR)
             .build();
     }
 }

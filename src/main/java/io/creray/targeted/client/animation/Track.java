@@ -5,6 +5,11 @@ public final class Track {
     @FunctionalInterface
     public interface Driver {
         Driver STATIC = () -> 1.0F;
+
+        static Driver limitedBy(Track track, Track limiter) {
+            return () -> track.limitedBy(limiter);
+        }
+
         float get();
     }
 
