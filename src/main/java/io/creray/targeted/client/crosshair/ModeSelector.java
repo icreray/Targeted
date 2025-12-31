@@ -2,7 +2,8 @@ package io.creray.targeted.client.crosshair;
 
 import io.creray.targeted.client.crosshair.mode.Mode;
 import io.creray.targeted.client.crosshair.mode.Modes;
-import io.creray.targeted.client.Target;
+import io.creray.targeted.client.target.Target;
+import io.creray.targeted.client.target.TargetContext;
 import io.creray.targeted.util.BlockUtils;
 import io.creray.targeted.util.EntityUtils;
 import lombok.experimental.UtilityClass;
@@ -26,8 +27,8 @@ public class ModeSelector {
     }
 
     private Mode selectEntityMode(Entity entity) {
-        if (entity instanceof LivingEntity livingEntity) {
-            return Modes.HEALTH_INDICATOR.with(() -> EntityUtils.healthPercent(livingEntity));
+        if (entity instanceof LivingEntity) {
+            return Modes.HEALTH_INDICATOR.with(TargetContext.of(entity));
         }
         return Modes.CIRCLE;
     }

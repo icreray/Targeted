@@ -1,4 +1,4 @@
-package io.creray.targeted.client;
+package io.creray.targeted.client.target;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

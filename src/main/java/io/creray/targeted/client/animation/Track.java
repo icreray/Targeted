@@ -1,6 +1,12 @@
 package io.creray.targeted.client.animation;
 
-public final class AnimationProgress {
+public final class Track {
+
+    @FunctionalInterface
+    public interface Driver {
+        Driver STATIC = () -> 1.0F;
+        float get();
+    }
 
     public final float DURATION;
     private boolean isPaused;
@@ -12,7 +18,7 @@ public final class AnimationProgress {
         currentTime = 0;
     }
 
-    public AnimationProgress(float duration) {
+    public Track(float duration) {
         assert duration >= 0;
         DURATION = duration;
         goalTime = DURATION;
@@ -63,7 +69,7 @@ public final class AnimationProgress {
         return currentTime / DURATION;
     }
 
-    public float limitedBy(AnimationProgress other) {
+    public float limitedBy(Track other) {
         return Math.min(get(), other.get());
     }
 }

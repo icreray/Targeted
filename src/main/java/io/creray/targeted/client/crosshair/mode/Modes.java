@@ -1,29 +1,41 @@
 package io.creray.targeted.client.crosshair.mode;
 
-import io.creray.targeted.client.animation.CrosshairSprite;
-import io.creray.targeted.client.animation.SpriteAnimation;
+import io.creray.targeted.client.animation.*;
+import lombok.experimental.UtilityClass;
 
+import java.util.Arrays;
+
+@UtilityClass
 public final class Modes {
 
-    public static final Mode DEFAULT = (guiRenderer, deltaTracker) ->
-            CrosshairSprite.DEFAULT.renderAtCenter(guiRenderer);
+    public final Mode DEFAULT = sprite(CrosshairSprite.DEFAULT);
+    public final Mode HEALTH_INDICATOR = createHealthIndicator();
+    public final Mode CIRCLE = transition(3, CrosshairSprite.SHRINK);
+    public final Mode EXPANDED = transition(3, Arrays.copyOf(CrosshairSprite.SHRINK, 2));
 
-    public static final IndicatorMode HEALTH_INDICATOR = new IndicatorMode(
-            6, 8,
-            new SpriteAnimation(CrosshairSprite.EXPAND),
-            new SpriteAnimation(CrosshairSprite.HEALTH_INDICATOR)
-    );
+    private Mode sprite(CrosshairSprite sprite) {
+        return Mode.builder()
+            .addSprite(sprite)
+            .build();
+    }
 
-    public static final Mode CIRCLE = new SimpleMode(
-            3, new SpriteAnimation(CrosshairSprite.SHRINK)
-    );
+    private Mode transition(float duration, CrosshairSprite[] animation) {
+        var track = new Track(duration);
+        return Mode.builder()
+            .addSlider(track, TrackControllers.TRANSITION_PROGRESS)
+            .addAnimation(track::get, animation)
+            .build();
+    }
 
-    public static final Mode EXPANDED = new SimpleMode(
-            3, new SpriteAnimation(
-                    CrosshairSprite.EXPAND[0],
-                    CrosshairSprite.EXPAND[1]
-            )
-    );
+    private Mode createHealthIndicator() {
+        var transition = new Track(8);
+        var indicator = new Track(6);
 
-    private Modes() {}
+        return Mode.builder()
+            .addSlider(transition, TrackControllers.TRANSITION_PROGRESS)
+            .addSlider(indicator, TrackControllers.HEALTH_PERCENT)
+            .addAnimation(transition::get, CrosshairSprite.HEALTH_INDICATOR)
+            .addAnimation(() -> transition.limitedBy(indicator), CrosshairSprite.HEALTH_INDICATOR)
+            .build();
+    }
 }
