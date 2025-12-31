@@ -34,7 +34,7 @@ public final class Modes {
         return Mode.builder()
             .addSlider(transition, TrackControllers.TRANSITION_PROGRESS)
             .addSlider(indicator, TrackControllers.HEALTH_PERCENT)
-            .addAnimation(transition::get, CrosshairSprite.HEALTH_INDICATOR)
+            .addAnimation(transition::get, CrosshairSprite.EXPAND)
             .addAnimation(() -> transition.limitedBy(indicator), CrosshairSprite.HEALTH_INDICATOR)
             .build();
     }
