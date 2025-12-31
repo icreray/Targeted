@@ -1,16 +1,16 @@
 package io.creray.targeted;
 
 import io.creray.targeted.client.crosshair.Crosshair;
+import lombok.experimental.UtilityClass;
 
-public final class Targeted {
+@UtilityClass
+public class Targeted {
 
-    public static final String MOD_ID = "targeted";
+    public final String MOD_ID = "targeted";
 
-    public static final Crosshair crosshair;
+    public final Crosshair crosshair;
 
     static {
         crosshair = new Crosshair();
     }
-
-    private Targeted() {}
 }
