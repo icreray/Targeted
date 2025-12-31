@@ -16,17 +16,20 @@ public final class ModeBuilder {
         animations = new ArrayList<>();
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ModeBuilder addTrack(Track track, TrackController controller) {
         tracks.add(track);
         controllers.add(controller);
         return this;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ModeBuilder addAnimation(Track.Driver trackDriver, CrosshairSprite[] frames) {
         animations.add(new Animation(trackDriver, frames));
         return this;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ModeBuilder addSprite(CrosshairSprite sprite) {
         animations.add(new Animation(sprite));
         return this;
