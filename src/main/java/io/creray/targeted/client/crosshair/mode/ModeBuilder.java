@@ -16,7 +16,7 @@ public final class ModeBuilder {
         animations = new ArrayList<>();
     }
 
-    public ModeBuilder addSlider(Track track, TrackController controller) {
+    public ModeBuilder addTrack(Track track, TrackController controller) {
         tracks.add(track);
         controllers.add(controller);
         return this;

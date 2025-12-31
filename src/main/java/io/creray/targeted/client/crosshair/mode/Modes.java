@@ -22,7 +22,7 @@ public final class Modes {
     private Mode transition(float duration, CrosshairSprite[] animation) {
         var track = new Track(duration);
         return Mode.builder()
-            .addSlider(track, TrackControllers.TRANSITION_PROGRESS)
+            .addTrack(track, TrackControllers.TRANSITION_PROGRESS)
             .addAnimation(track::get, animation)
             .build();
     }
@@ -32,8 +32,8 @@ public final class Modes {
         var indicator = new Track(6);
 
         return Mode.builder()
-            .addSlider(transition, TrackControllers.TRANSITION_PROGRESS)
-            .addSlider(indicator, TrackControllers.HEALTH_PERCENT)
+            .addTrack(transition, TrackControllers.TRANSITION_PROGRESS)
+            .addTrack(indicator, TrackControllers.HEALTH_PERCENT)
             .addAnimation(transition::get, CrosshairSprite.EXPAND)
             .addAnimation(() -> transition.limitedBy(indicator), CrosshairSprite.HEALTH_INDICATOR)
             .build();

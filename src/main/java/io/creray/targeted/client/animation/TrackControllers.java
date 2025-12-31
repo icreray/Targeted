@@ -2,7 +2,9 @@ package io.creray.targeted.client.animation;
 
 import io.creray.targeted.client.target.TargetContext;
 import io.creray.targeted.util.EntityUtils;
+import io.creray.targeted.util.ModIdentifier;
 import lombok.experimental.UtilityClass;
+import net.minecraft.resources.Identifier;
 
 import java.util.Map;
 
@@ -24,12 +26,12 @@ public class TrackControllers {
         public void disable(Track track) { track.runBackward(); }
     };
 
-    private final Map<String, TrackController> BY_KEY = Map.of(
-        "health_percent", HEALTH_PERCENT,
-        "transition_progress", TRANSITION_PROGRESS
+    private final Map<Identifier, TrackController> REGISTRY = Map.of(
+        ModIdentifier.of("health_percent"), HEALTH_PERCENT,
+        ModIdentifier.of("transition_progress"), TRANSITION_PROGRESS
     );
 
-    public TrackController get(String key) {
-        return BY_KEY.get(key);
+    public TrackController get(Identifier id) {
+        return REGISTRY.get(id);
     }
 }
