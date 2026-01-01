@@ -1,6 +1,5 @@
 package io.creray.targeted.client.resources;
 
-import com.mojang.logging.LogUtils;
 import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.util.ModIdentifier;
 import net.minecraft.resources.FileToIdConverter;
@@ -15,7 +14,7 @@ import java.util.Map;
 public final class ModesLoader
     extends SimpleJsonResourceReloadListener<ModeDefinition>
 {
-    public static final Identifier IDENTIFIER = ModIdentifier.of("crosshair_modes");
+    public static final Identifier IDENTIFIER = ModIdentifier.of("crosshair_mode");
 
     private final ModeMap modes;
 

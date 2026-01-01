@@ -30,9 +30,7 @@ public final class ModeMap {
     }
 
     public Mode get(Identifier id) {
-        var mode = modesById.get(id);
-        if (mode == null) mode = DEFAULT_MODE;
-        return mode;
+        return modesById.getOrDefault(id, DEFAULT_MODE);
     }
 
     public void reset() {
