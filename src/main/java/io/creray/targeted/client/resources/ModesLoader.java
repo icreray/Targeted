@@ -21,7 +21,6 @@ public final class ModesLoader
 
     public ModesLoader(ModeMap modes) {
         super(ModeDefinition.CODEC, FileToIdConverter.json("crosshair/mode"));
-        LogUtils.getLogger().info("Creating ModesLoader");
         this.modes = modes;
     }
 
@@ -32,10 +31,8 @@ public final class ModesLoader
         ProfilerFiller profilerFiller
     ) {
         modes.reset();
-        LogUtils.getLogger().info("Applying ModeLoader");
         modeDefinitions.forEach((id, def) -> {
             var mode = ModeCompiler.compile(def);
-            LogUtils.getLogger().info("Compiled {}", id);
             modes.put(id, mode);
         });
     }
