@@ -1,0 +1,16 @@
+{
+  "animations": [
+    {
+      "track": {
+        "id": "transition",
+        "duration": 3,
+        "controller": "targeted:transition_progress"
+      },
+      "sprites": [
+        "targeted:crosshair/shrink_0",
+        "targeted:crosshair/shrink_1",
+        "targeted:crosshair/shrink_2"
+      ]
+    }
+  ]
+}

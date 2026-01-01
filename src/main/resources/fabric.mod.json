@@ -9,7 +9,11 @@
   "license": "All-Rights-Reserved",
   "icon": "assets/targeted/icon.png",
   "environment": "client",
-  "entrypoints": {},
+  "entrypoints": {
+    "client": [
+      "io.creray.targeted.Targeted"
+    ]
+  },
   "mixins": [
     "targeted.mixins.json"
   ],

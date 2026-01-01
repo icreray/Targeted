@@ -1,7 +1,7 @@
 package io.creray.targeted.client.crosshair;
 
 import io.creray.targeted.client.crosshair.mode.Mode;
-import io.creray.targeted.client.crosshair.mode.Modes;
+import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.client.target.Target;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,7 +16,7 @@ public final class Crosshair {
 
     {
         target = Target.empty();
-        currentMode = Modes.DEFAULT;
+        currentMode = ModeMap.DEFAULT_MODE;
     }
 
     public void updateTarget(Target newTarget) {

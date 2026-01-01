@@ -1,17 +1,20 @@
 package io.creray.targeted.client.crosshair;
 
+import io.creray.targeted.Targeted;
 import io.creray.targeted.client.crosshair.mode.Mode;
-import io.creray.targeted.client.crosshair.mode.Modes;
+import io.creray.targeted.client.crosshair.mode.ModeIds;
+import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.client.target.Target;
 import io.creray.targeted.client.target.TargetContext;
 import io.creray.targeted.util.BlockUtils;
-import io.creray.targeted.util.EntityUtils;
 import lombok.experimental.UtilityClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+// TODO: Replace with data-driven selector
+@Deprecated
 @UtilityClass
 public class ModeSelector {
 
@@ -22,21 +25,23 @@ public class ModeSelector {
             case Target.Block(var state, var position) ->
                 selectBlockMode(state, position);
             default ->
-                Modes.DEFAULT;
+                ModeMap.DEFAULT_MODE;
         };
     }
 
     private Mode selectEntityMode(Entity entity) {
         if (entity instanceof LivingEntity) {
-            return Modes.HEALTH_INDICATOR.with(TargetContext.of(entity));
+            return Targeted.modes
+                .get(ModeIds.HEALTH_INDICATOR)
+                .with(TargetContext.of(entity));
         }
-        return Modes.CIRCLE;
+        return Targeted.modes.get(ModeIds.CIRCLE);
     }
 
     private Mode selectBlockMode(BlockState state, BlockPos ignoredPosition) {
         if (BlockUtils.isWaxed(state.getBlock())) {
-            return Modes.EXPANDED;
+            return Targeted.modes.get(ModeIds.EXPANDED);
         }
-        return Modes.DEFAULT;
+        return ModeMap.DEFAULT_MODE;
     }
 }

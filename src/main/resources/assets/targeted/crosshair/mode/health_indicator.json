@@ -1,0 +1,34 @@
+{
+  "animations": [
+    {
+      "track": {
+        "id": "transition",
+        "duration": 8,
+        "controller": "targeted:transition_progress"
+      },
+      "sprites": [
+        "targeted:crosshair/expand_0",
+        "targeted:crosshair/expand_0",
+        "targeted:crosshair/expand_1"
+      ]
+    },
+    {
+      "track": {
+        "id": "indicator",
+        "duration": 6,
+        "controller": "targeted:health_percent",
+        "limited_by": "transition"
+      },
+      "sprites": [
+        "targeted:crosshair/health_indicator_0",
+        "targeted:crosshair/health_indicator_1",
+        "targeted:crosshair/health_indicator_2",
+        "targeted:crosshair/health_indicator_3",
+        "targeted:crosshair/health_indicator_4",
+        "targeted:crosshair/health_indicator_5",
+        "targeted:crosshair/health_indicator_6",
+        "targeted:crosshair/health_indicator_7"
+      ]
+    }
+  ]
+}
