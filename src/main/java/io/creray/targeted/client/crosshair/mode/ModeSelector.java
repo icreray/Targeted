@@ -1,22 +1,25 @@
-package io.creray.targeted.client.crosshair;
+package io.creray.targeted.client.crosshair.mode;
 
-import io.creray.targeted.Targeted;
-import io.creray.targeted.client.crosshair.mode.Mode;
-import io.creray.targeted.client.crosshair.mode.ModeIds;
-import io.creray.targeted.client.crosshair.mode.ModeMap;
+import io.creray.targeted.client.resources.ModesLoader;
 import io.creray.targeted.client.target.Target;
 import io.creray.targeted.client.target.TargetContext;
 import io.creray.targeted.util.BlockUtils;
-import lombok.experimental.UtilityClass;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-// TODO: Replace with data-driven selector
-@Deprecated
-@UtilityClass
-public class ModeSelector {
+import java.util.Map;
+
+public final class ModeSelector {
+
+    private ModeMap modes;
+
+    {
+        this.modes = ModeMap.EMPTY;
+    }
 
     public Mode selectFor(Target target) {
         return switch (target) {
@@ -31,17 +34,25 @@ public class ModeSelector {
 
     private Mode selectEntityMode(Entity entity) {
         if (entity instanceof LivingEntity) {
-            return Targeted.modes
+            return modes
                 .get(ModeIds.HEALTH_INDICATOR)
                 .with(TargetContext.of(entity));
         }
-        return Targeted.modes.get(ModeIds.CIRCLE);
+        return modes.get(ModeIds.CIRCLE);
     }
 
     private Mode selectBlockMode(BlockState state, BlockPos ignoredPosition) {
         if (BlockUtils.isWaxed(state.getBlock())) {
-            return Targeted.modes.get(ModeIds.EXPANDED);
+            return modes.get(ModeIds.EXPANDED);
         }
         return ModeMap.DEFAULT_MODE;
+    }
+
+    public void registerResourceReloaders(ResourceLoader loader) {
+        loader.registerReloader(ModesLoader.IDENTIFIER, new ModesLoader(this::setLoadedModes));
+    }
+
+    private void setLoadedModes(Map<Identifier, Mode> loadedModes) {
+        modes = new ModeMap(loadedModes);
     }
 }
