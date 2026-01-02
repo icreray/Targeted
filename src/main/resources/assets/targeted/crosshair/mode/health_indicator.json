@@ -20,6 +20,7 @@
         "limited_by": "transition"
       },
       "sprites": [
+        "targeted:crosshair/empty",
         "targeted:crosshair/health_indicator_0",
         "targeted:crosshair/health_indicator_1",
         "targeted:crosshair/health_indicator_2",
