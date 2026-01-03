@@ -12,14 +12,14 @@ import java.util.List;
 public record RuleDefinition(
     int priority,
     ModeTrigger trigger,
-    List<RuleCondition> conditions, // TODO: Make complex conditions
+    List<RuleCondition> conditions,
     Identifier mode
 ) {
     public static final Codec<RuleDefinition> CODEC = RecordCodecBuilder.create(
         instance -> instance.group(
             Codec.INT.fieldOf("priority").forGetter(RuleDefinition::priority),
             ModRegistries.MODE_TRIGGER.byNameCodec().fieldOf("trigger").forGetter(RuleDefinition::trigger),
-            ModRegistries.SIMPLE_RULE_CONDITION.byNameCodec().listOf().fieldOf("conditions").forGetter(RuleDefinition::conditions),
+            RuleCondition.CODEC.listOf().fieldOf("conditions").forGetter(RuleDefinition::conditions),
             Identifier.CODEC.fieldOf("mode").forGetter(RuleDefinition::mode)
         ).apply(instance, RuleDefinition::new)
     );

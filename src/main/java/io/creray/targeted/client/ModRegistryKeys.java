@@ -12,11 +12,13 @@ import net.minecraft.resources.ResourceKey;
 public class ModRegistryKeys {
 
     public final ResourceKey<Registry<TrackController>> TRACK_CONTROLLER;
+    public final ResourceKey<Registry<RuleCondition.Type>> RULE_CONDITION_TYPE;
     public final ResourceKey<Registry<RuleCondition>> SIMPLE_RULE_CONDITION;
     public final ResourceKey<Registry<ModeTrigger>> MODE_TRIGGER;
 
     static {
         TRACK_CONTROLLER = createRegistryKey("track_controller");
+        RULE_CONDITION_TYPE = createRegistryKey("rule_condition_type");
         SIMPLE_RULE_CONDITION = createRegistryKey("simple_rule_condition");
         MODE_TRIGGER = createRegistryKey("rule_trigger");
     }
