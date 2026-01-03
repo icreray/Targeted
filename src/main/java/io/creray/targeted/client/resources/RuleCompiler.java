@@ -4,7 +4,6 @@ import com.google.gson.JsonParseException;
 import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.client.crosshair.rule.Rule;
 import io.creray.targeted.client.crosshair.rule.condition.RuleCondition;
-import io.creray.targeted.client.crosshair.rule.condition.RuleConditions;
 
 public record RuleCompiler(
     ModeMap modes
@@ -14,8 +13,6 @@ public record RuleCompiler(
         if (mode == null)
             throw new JsonParseException("Invalid mode: " + def.mode()); // FIXME: proper error handling
         var conditions = def.conditions()
-            .stream()
-            .map(RuleConditions::get) // FIXME: Proper error handling
             .toArray(RuleCondition[]::new);
         return new Rule(
             def.priority(),
