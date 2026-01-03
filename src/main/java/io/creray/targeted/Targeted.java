@@ -17,10 +17,10 @@ public class Targeted implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        registerResources();
+        registerResourceReloaders();
     }
 
-    private static void registerResources() {
+    private static void registerResourceReloaders() {
         var resourceLoader = ResourceLoader.get(PackType.CLIENT_RESOURCES);
         crosshair.modeSelector.registerResourceReloaders(resourceLoader);
     }

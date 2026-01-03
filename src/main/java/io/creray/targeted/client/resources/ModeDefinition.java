@@ -31,7 +31,7 @@ public record ModeDefinition(
     public record TrackDefinition(
         String id,
         float duration,
-        Identifier controller,
+        Identifier controller, // TODO: Make it a registry
         Optional<String> limitedBy
     ) {
         public static final Codec<TrackDefinition> CODEC = RecordCodecBuilder.create(

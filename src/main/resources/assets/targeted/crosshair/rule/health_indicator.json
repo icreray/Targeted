@@ -1,0 +1,8 @@
+{
+  "priority": 100,
+  "trigger": "targeted:target_entity",
+  "conditions": [
+    "targeted:is_living_entity"
+  ],
+  "mode": "targeted:health_indicator"
+}

@@ -18,6 +18,14 @@ public record TargetContext(
         return new TargetContext(entity, null, null, null);
     }
 
+    public static TargetContext of(BlockState state, BlockPos position) {
+        return new TargetContext(null, state, position, null);
+    }
+
+    public static TargetContext empty() {
+        return new TargetContext(null, null, null, null);
+    }
+
     public LivingEntity livingEntity() {
         return (LivingEntity) entity;
     }

@@ -1,0 +1,6 @@
+{
+  "priority": 0,
+  "trigger": "targeted:target_entity",
+  "conditions": [],
+  "mode": "targeted:circle"
+}

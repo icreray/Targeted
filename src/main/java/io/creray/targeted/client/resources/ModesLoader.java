@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 public final class ModesLoader
     extends SimpleJsonResourceReloadListener<ModeDefinition>
 {
-    public static final Identifier IDENTIFIER = ModIdentifier.of("crosshair_mode");
+    public static final Identifier ID = ModIdentifier.of("crosshair_mode");
     private final Consumer<Map<Identifier, Mode>> modesSetter;
 
     public ModesLoader(Consumer<Map<Identifier, Mode>> modesSetter) {
