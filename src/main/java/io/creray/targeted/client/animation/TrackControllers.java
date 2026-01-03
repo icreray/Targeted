@@ -11,9 +11,8 @@ import java.util.Map;
 @UtilityClass
 public class TrackControllers {
 
-    public final TrackController HEALTH_PERCENT = (track, context) -> {
+    public final TrackController HEALTH_PERCENT = (track, context) ->
         track.runTowards(EntityUtils.healthPercent(context.livingEntity()));
-    };
 
     public final TrackController TRANSITION_PROGRESS = new TrackController() {
         @Override

@@ -40,7 +40,7 @@ public sealed interface Target
     }
 
     final class Empty implements Target {
-        public static Empty INSTANCE = new Empty();
+        public static final Empty INSTANCE = new Empty();
         private Empty() {}
     }
 

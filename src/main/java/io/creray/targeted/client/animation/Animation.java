@@ -17,11 +17,11 @@ public final class Animation {
     }
 
     public void renderFrame(GuiGraphics guiGraphics) {
-        getFrame(trackDriver.get()).renderAtCenter(guiGraphics);
+        getFrame(trackDriver).renderAtCenter(guiGraphics);
     }
 
-    public CrosshairSprite getFrame(Track progress) {
-        return getFrame(progress.get());
+    public CrosshairSprite getFrame(Track.Driver driver) {
+        return getFrame(driver.get());
     }
 
     public CrosshairSprite getFrame(float progress) {

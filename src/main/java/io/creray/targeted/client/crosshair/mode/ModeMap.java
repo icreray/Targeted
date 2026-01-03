@@ -11,14 +11,12 @@ import java.util.Map;
 @Unmodifiable
 public final class ModeMap {
 
-    public static final Identifier DEFAULT;
     public static final Mode DEFAULT_MODE;
     public static final ModeMap EMPTY;
 
     private final Map<Identifier, Mode> modesById;
 
     static {
-        DEFAULT = ModIdentifier.of("default");
         DEFAULT_MODE = Mode.builder()
             .addSprite(CrosshairSprite.DEFAULT)
             .build();
