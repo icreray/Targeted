@@ -35,7 +35,9 @@ public final class ModeBuilder {
         return this;
     }
 
-    public Mode build() {
+    public Mode build() throws IllegalStateException {
+        if (animations.isEmpty())
+            throw new IllegalStateException("Cannot build Mode: no animations defined");
         return new Mode(
             tracks.toArray(Track[]::new),
             controllers.toArray(TrackController[]::new),

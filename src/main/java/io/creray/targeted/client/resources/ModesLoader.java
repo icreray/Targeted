@@ -1,8 +1,9 @@
 package io.creray.targeted.client.resources;
 
+import com.google.common.collect.ImmutableMap;
+import io.creray.targeted.Targeted;
 import io.creray.targeted.client.crosshair.mode.Mode;
 import io.creray.targeted.util.ModIdentifier;
-import io.creray.targeted.util.lang.ImmutableMaps;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -30,9 +31,18 @@ public final class ModesLoader
         @NotNull ResourceManager resourceManager,
         @NotNull ProfilerFiller profilerFiller
     ) {
-        modesSetter.accept(ImmutableMaps.transformValues(
-            modeDefinitions,
-            ModeCompiler::compile
-        ));
+        var builder = new ImmutableMap.Builder<Identifier, Mode>();
+        for (var entry : modeDefinitions.entrySet()) {
+            var identifier = entry.getKey();
+            var modeDef = entry.getValue();
+            try {
+                var mode = ModeCompiler.compile(modeDef);
+                builder.put(identifier, mode);
+            }
+            catch (IllegalStateException e) {
+                Targeted.LOGGER.error("Failed to compile mode '{}': {}", identifier, e.getMessage());
+            }
+        }
+        modesSetter.accept(builder.build());
     }
 }

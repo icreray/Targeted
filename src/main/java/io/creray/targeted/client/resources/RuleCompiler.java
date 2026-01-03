@@ -1,22 +1,19 @@
 package io.creray.targeted.client.resources;
 
-import com.google.gson.JsonParseException;
 import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.client.crosshair.rule.Rule;
 import io.creray.targeted.client.crosshair.rule.condition.RuleCondition;
 
 public record RuleCompiler(
-    ModeMap modes
+    ModeMap definedModes
 ) {
-    public Rule compile(RuleDefinition def) {
-        var mode = modes.get(def.mode());
+    public Rule compile(RuleDefinition def) throws IllegalStateException {
+        var mode = definedModes.get(def.mode());
         if (mode == null)
-            throw new JsonParseException("Invalid mode: " + def.mode()); // FIXME: proper error handling
-        var conditions = def.conditions()
-            .toArray(RuleCondition[]::new);
+            throw new IllegalStateException("Invalid mode argument '" + def.mode() + "'. It must reference a defined mode.");
         return new Rule(
             def.priority(),
-            conditions,
+            def.conditions().toArray(RuleCondition[]::new),
             mode
         );
     }

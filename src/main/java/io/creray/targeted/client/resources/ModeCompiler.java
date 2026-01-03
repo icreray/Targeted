@@ -14,25 +14,24 @@ import java.util.Map;
 
 @UtilityClass
 public class ModeCompiler {
-
-    public Mode compile(ModeDefinition def) {
-        Map<String, Track> tracks = new HashMap<>();
+    public Mode compile(ModeDefinition def) throws IllegalStateException {
+        Map<String, Track> definedTracks = new HashMap<>();
         ModeBuilder builder = Mode.builder();
 
-        createTracks(tracks, builder, def.animations());
-        createAnimations(tracks, builder, def.animations());
+        createTracks(definedTracks, builder, def.animations());
+        createAnimations(definedTracks, builder, def.animations());
 
         return builder.build();
     }
 
     private void createTracks(
-        Map<String, Track> tracks,
+        Map<String, Track> definedTracks,
         ModeBuilder builder,
         List<AnimationDefinition> animations
     ) {
         for (var animationDef : animations) {
             var trackDef = animationDef.track();
-            tracks.computeIfAbsent(trackDef.id(), id -> {
+            definedTracks.computeIfAbsent(trackDef.id(), id -> {
                 var track = new Track(trackDef.duration());
                 builder.addTrack(track, trackDef.controller());
                 return track;
@@ -41,19 +40,18 @@ public class ModeCompiler {
     }
 
     private void createAnimations(
-        Map<String, Track> tracks,
+        Map<String, Track> definedTracks,
         ModeBuilder builder,
         List<AnimationDefinition> animations
-    ) {
+    ) throws IllegalStateException {
         for (var animationDef : animations) {
             var trackDef = animationDef.track();
-            var track = tracks.get(trackDef.id());
+            var track = definedTracks.get(trackDef.id());
 
             Track.Driver trackDriver = trackDef.limitedBy()
-                .map(id -> Track.Driver.limitedBy(track, tracks.get(id)))
+                .map(id -> createLimitedByDriver(track, definedTracks, id))
                 .orElse(track::get);
 
-            // FIXME: replace crosshair sprite calls with static methods
             builder.addAnimation(
                 trackDriver,
                 animationDef.sprites()
@@ -62,5 +60,16 @@ public class ModeCompiler {
                     .toArray(CrosshairSprite[]::new)
             );
         }
+    }
+
+    private Track.Driver createLimitedByDriver(
+        Track track,
+        Map<String, Track> definedTracks,
+        String id
+    ) throws IllegalStateException {
+        var limiter = definedTracks.get(id);
+        if (limiter == null)
+            throw new IllegalStateException("Invalid limited_by argument '" + id + "'. It must reference a defined track.");
+        return Track.Driver.limitedBy(track, limiter);
     }
 }

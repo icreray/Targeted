@@ -1,10 +1,14 @@
 package io.creray.targeted.client.resources;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.creray.targeted.client.ModRegistries;
 import io.creray.targeted.client.animation.TrackController;
 import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.VisibleForTesting;
+
+import static com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +17,17 @@ public record ModeDefinition(
     List<AnimationDefinition> animations
 ) {
     public static final Codec<ModeDefinition> CODEC = RecordCodecBuilder.create(
-        instance -> instance.group(
+        (Instance<ModeDefinition> instance) -> instance.group(
             AnimationDefinition.CODEC.listOf().fieldOf("animations").forGetter(ModeDefinition::animations)
         ).apply(instance, ModeDefinition::new)
-    );
+    ).validate(ModeDefinition::validate);
+
+    @VisibleForTesting
+    public DataResult<ModeDefinition> validate() {
+        if (animations.isEmpty())
+            return DataResult.error(() -> "Animations cannot be empty");
+        return DataResult.success(this);
+    }
 
     public record AnimationDefinition(
         TrackDefinition track,
@@ -39,7 +50,7 @@ public record ModeDefinition(
         public static final Codec<TrackDefinition> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                 Codec.STRING.fieldOf("id").forGetter(TrackDefinition::id),
-                Codec.FLOAT.fieldOf("duration").forGetter(TrackDefinition::duration),
+                Codec.floatRange(0, 100).fieldOf("duration").forGetter(TrackDefinition::duration),
                 ModRegistries.TRACK_CONTROLLER.byNameCodec().fieldOf("controller").forGetter(TrackDefinition::controller),
                 Codec.STRING.optionalFieldOf("limited_by").forGetter(TrackDefinition::limitedBy)
             ).apply(instance, TrackDefinition::new)
