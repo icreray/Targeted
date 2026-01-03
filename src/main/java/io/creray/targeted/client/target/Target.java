@@ -9,6 +9,7 @@ import net.minecraft.world.phys.EntityHitResult;
 public sealed interface Target
     permits Target.Empty, Target.Entity, Target.Block {
 
+    @SuppressWarnings("SameReturnValue")
     static Target empty() {
         return Empty.INSTANCE;
     }
