@@ -1,5 +1,6 @@
 package io.creray.targeted;
 
+import io.creray.targeted.client.ModRegistries;
 import io.creray.targeted.client.crosshair.Crosshair;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
@@ -17,6 +18,7 @@ public class Targeted implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ModRegistries.registerAll();
         registerResourceReloaders();
     }
 

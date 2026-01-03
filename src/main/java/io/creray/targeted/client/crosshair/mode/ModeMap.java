@@ -1,7 +1,6 @@
 package io.creray.targeted.client.crosshair.mode;
 
 import io.creray.targeted.client.animation.CrosshairSprite;
-import io.creray.targeted.util.ModIdentifier;
 import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;

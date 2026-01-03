@@ -2,6 +2,8 @@ package io.creray.targeted.client.resources;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.creray.targeted.client.ModRegistries;
+import io.creray.targeted.client.animation.TrackController;
 import net.minecraft.resources.Identifier;
 
 import java.util.List;
@@ -31,14 +33,14 @@ public record ModeDefinition(
     public record TrackDefinition(
         String id,
         float duration,
-        Identifier controller, // TODO: Make it a registry
+        TrackController controller,
         Optional<String> limitedBy
     ) {
         public static final Codec<TrackDefinition> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                 Codec.STRING.fieldOf("id").forGetter(TrackDefinition::id),
                 Codec.FLOAT.fieldOf("duration").forGetter(TrackDefinition::duration),
-                Identifier.CODEC.fieldOf("controller").forGetter(TrackDefinition::controller),
+                ModRegistries.TRACK_CONTROLLER.byNameCodec().fieldOf("controller").forGetter(TrackDefinition::controller),
                 Codec.STRING.optionalFieldOf("limited_by").forGetter(TrackDefinition::limitedBy)
             ).apply(instance, TrackDefinition::new)
         );

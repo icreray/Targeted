@@ -2,7 +2,6 @@ package io.creray.targeted.client.resources;
 
 import io.creray.targeted.client.animation.CrosshairSprite;
 import io.creray.targeted.client.animation.Track;
-import io.creray.targeted.client.animation.TrackControllers;
 import io.creray.targeted.client.crosshair.mode.Mode;
 import io.creray.targeted.client.crosshair.mode.ModeBuilder;
 import lombok.experimental.UtilityClass;
@@ -35,7 +34,7 @@ public class ModeCompiler {
             var trackDef = animationDef.track();
             tracks.computeIfAbsent(trackDef.id(), id -> {
                 var track = new Track(trackDef.duration());
-                builder.addTrack(track, TrackControllers.get(trackDef.controller()));
+                builder.addTrack(track, trackDef.controller());
                 return track;
             });
         }

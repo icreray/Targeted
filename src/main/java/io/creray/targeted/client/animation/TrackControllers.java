@@ -1,12 +1,11 @@
 package io.creray.targeted.client.animation;
 
+import io.creray.targeted.client.ModRegistries;
 import io.creray.targeted.client.target.TargetContext;
 import io.creray.targeted.util.EntityUtils;
 import io.creray.targeted.util.ModIdentifier;
 import lombok.experimental.UtilityClass;
-import net.minecraft.resources.Identifier;
-
-import java.util.Map;
+import net.minecraft.core.Registry;
 
 @UtilityClass
 public class TrackControllers {
@@ -25,12 +24,16 @@ public class TrackControllers {
         public void disable(Track track) { track.runBackward(); }
     };
 
-    private final Map<Identifier, TrackController> REGISTRY = Map.of(
-        ModIdentifier.of("health_percent"), HEALTH_PERCENT,
-        ModIdentifier.of("transition_progress"), TRANSITION_PROGRESS
-    );
+    public void registerAll() {
+        register("health_percent", HEALTH_PERCENT);
+        register("transition_progress", TRANSITION_PROGRESS);
+    }
 
-    public TrackController get(Identifier id) {
-        return REGISTRY.get(id);
+    private void register(String path, TrackController controller) {
+        Registry.register(
+            ModRegistries.TRACK_CONTROLLER,
+            ModIdentifier.of(path),
+            controller
+        );
     }
 }
