@@ -17,6 +17,7 @@ public class RuleConditionTypes {
         BLOCK_STATE = register("block_state", BlockStateCondition.CODEC);
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void registerAll() {
         // Initialize static constructor
     }

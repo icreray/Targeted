@@ -24,6 +24,7 @@ public class ModeTriggers {
         TARGET_EMPTY = register("target_empty");
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void registerAll() {
         // Initialize static constructor
     }
