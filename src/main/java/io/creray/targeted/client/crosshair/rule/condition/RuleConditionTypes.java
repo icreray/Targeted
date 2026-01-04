@@ -10,9 +10,11 @@ import net.minecraft.core.Registry;
 public class RuleConditionTypes {
 
     public final RuleCondition.Type SIMPLE;
+    public final RuleCondition.Type BLOCK_STATE;
 
     static {
         SIMPLE = register("simple", ModRegistries.SIMPLE_RULE_CONDITION.byNameCodec().fieldOf("id"));
+        BLOCK_STATE = register("block_state", BlockStateCondition.CODEC);
     }
 
     public void registerAll() {
