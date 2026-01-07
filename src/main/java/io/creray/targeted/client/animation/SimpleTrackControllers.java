@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
 import net.minecraft.core.Registry;
 
 @UtilityClass
-public class TrackControllers {
+public class SimpleTrackControllers {
 
     public final TrackController HEALTH_PERCENT = (track, context) ->
         track.runTowards(EntityUtils.healthPercent(context.livingEntity()));
@@ -31,7 +31,7 @@ public class TrackControllers {
 
     private void register(String path, TrackController controller) {
         Registry.register(
-            ModRegistries.TRACK_CONTROLLER,
+            ModRegistries.SIMPLE_TRACK_CONTROLLER,
             ModIdentifier.of(path),
             controller
         );

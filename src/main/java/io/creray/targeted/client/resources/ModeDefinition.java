@@ -49,7 +49,7 @@ public record ModeDefinition(
             instance -> instance.group(
                 Codec.STRING.fieldOf("id").forGetter(TrackDefinition::id),
                 Codec.floatRange(0, 100).fieldOf("duration").forGetter(TrackDefinition::duration),
-                ModRegistries.TRACK_CONTROLLER.byNameCodec().fieldOf("controller").forGetter(TrackDefinition::controller),
+                TrackController.CODEC.fieldOf("controller").forGetter(TrackDefinition::controller),
                 Codec.STRING.optionalFieldOf("limited_by").forGetter(TrackDefinition::limitedBy)
             ).apply(instance, TrackDefinition::new)
         );
