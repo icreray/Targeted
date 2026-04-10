@@ -3,7 +3,6 @@ package io.creray.targeted.client.resources;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.creray.targeted.client.ModRegistries;
 import io.creray.targeted.client.animation.TrackController;
 import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.VisibleForTesting;
