@@ -31,14 +31,15 @@ processResources {
     }
 }
 
+def javaVersion = project.java_version as int
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = project.java_version as int
+    it.options.release = javaVersion
 }
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.toVersion javaVersion
+    targetCompatibility = JavaVersion.toVersion javaVersion
 }
 
 jar {
