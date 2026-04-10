@@ -1,7 +1,7 @@
 package io.creray.targeted.client.animation;
 
 import io.creray.targeted.util.ModIdentifier;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 
@@ -16,7 +16,7 @@ public record CrosshairSprite(Identifier resourceLocation) {
         return new CrosshairSprite(ModIdentifier.of(path));
     }
 
-    public void renderAtCenter(GuiGraphics guiGraphics) {
+    public void extractAtCenter(GuiGraphicsExtractor guiGraphics) {
         var x = (guiGraphics.guiWidth() - WIDTH) / 2;
         var y = (guiGraphics.guiHeight() - HEIGHT) / 2;
         guiGraphics.blitSprite(RenderPipelines.CROSSHAIR, resourceLocation, x, y, WIDTH, HEIGHT);

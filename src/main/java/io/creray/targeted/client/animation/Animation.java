@@ -1,6 +1,6 @@
 package io.creray.targeted.client.animation;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 public final class Animation {
 
@@ -16,8 +16,8 @@ public final class Animation {
         this.FRAMES = frames;
     }
 
-    public void renderFrame(GuiGraphics guiGraphics) {
-        getFrame(trackDriver).renderAtCenter(guiGraphics);
+    public void extractFrame(GuiGraphicsExtractor guiGraphics) {
+        getFrame(trackDriver).extractAtCenter(guiGraphics);
     }
 
     public CrosshairSprite getFrame(Track.Driver driver) {

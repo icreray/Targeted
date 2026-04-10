@@ -5,7 +5,7 @@ import io.creray.targeted.client.crosshair.mode.ModeMap;
 import io.creray.targeted.client.crosshair.mode.ModeSelector;
 import io.creray.targeted.client.target.Target;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import org.jetbrains.annotations.Nullable;
 
 public final class Crosshair {
@@ -36,8 +36,8 @@ public final class Crosshair {
         }
     }
 
-    public void render(GuiGraphics guiRenderer, DeltaTracker deltaTracker) {
-        currentMode.render(guiRenderer, deltaTracker);
+    public void extract(GuiGraphicsExtractor guiRenderer, DeltaTracker deltaTracker) {
+        currentMode.extract(guiRenderer, deltaTracker);
     }
 
     private void selectNextMode() {

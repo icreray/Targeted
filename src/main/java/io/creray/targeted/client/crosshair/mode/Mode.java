@@ -5,7 +5,7 @@ import io.creray.targeted.client.animation.Track;
 import io.creray.targeted.client.animation.TrackController;
 import io.creray.targeted.client.target.TargetContext;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 public final class Mode {
 
@@ -35,10 +35,10 @@ public final class Mode {
         return this;
     }
 
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public void extract(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         updateSliders(deltaTracker.getGameTimeDeltaTicks());
         for (var animation : animations) {
-            animation.renderFrame(guiGraphics);
+            animation.extractFrame(guiGraphics);
         }
     }
 

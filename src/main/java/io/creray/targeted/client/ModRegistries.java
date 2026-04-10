@@ -39,6 +39,6 @@ public class ModRegistries {
     }
 
     private <T> Registry<T> registerSimple(ResourceKey<Registry<T>> registryKey) {
-        return FabricRegistryBuilder.createSimple(registryKey).buildAndRegister();
+        return FabricRegistryBuilder.create(registryKey).buildAndRegister();
     }
 }

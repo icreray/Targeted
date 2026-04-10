@@ -34,15 +34,15 @@ public final class ModeSelector {
     }
 
     public void registerResourceReloaders(ResourceLoader loader) {
-        loader.registerReloader(
+        loader.registerReloadListener(
             ModesLoader.ID,
             new ModesLoader(this::setLoadedModes)
         );
-        loader.registerReloader(
+        loader.registerReloadListener(
             RulesLoader.ID,
             new RulesLoader(() -> this.modes, this::setLoadedRules)
         );
-        loader.addReloaderOrdering(ModesLoader.ID, RulesLoader.ID);
+        loader.addListenerOrdering(ModesLoader.ID, RulesLoader.ID);
     }
 
     private void setLoadedModes(Map<Identifier, Mode> loadedModes) {

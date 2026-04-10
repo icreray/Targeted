@@ -1,37 +1,39 @@
 plugins {
-    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
+
+def modVersion = project.mod_version
+def loaderVersion = project.loader_version
+def javaVersion = project.java_version as int
 
 version = project.mod_version
 group = project.maven_group
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:$loaderVersion"
 
     compileOnly 'org.projectlombok:lombok:1.18.42'
     annotationProcessor 'org.projectlombok:lombok:1.18.42'
 
     // Mod dependencies:
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
-    inputs.property 'version', project.version
-    inputs.property 'loader_version', project.loader_version
-    inputs.property 'java_version', project.java_version
+    inputs.property 'version', modVersion
+    inputs.property 'loader_version', loaderVersion
+    inputs.property 'java_version', javaVersion
     filteringCharset = 'UTF-8'
 
     filesMatching('fabric.mod.json') {
-        expand 'version': project.version,
-                'loader_version': project.loader_version,
-                'java_version': project.java_version
+        expand 'version': modVersion,
+                'loader_version': loaderVersion,
+                'java_version': javaVersion
     }
 }
 
-def javaVersion = project.java_version as int
 tasks.withType(JavaCompile).configureEach {
     it.options.release = javaVersion
 }
