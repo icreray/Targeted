@@ -3,7 +3,7 @@
   "id": "targeted",
   "version": "${version}",
   "name": "Targeted",
-  "description": "",
+  "description": "Simple mod with animated functionality to crosshair",
   "authors": ["Creray"],
   "contact": {},
   "license": "All-Rights-Reserved",
