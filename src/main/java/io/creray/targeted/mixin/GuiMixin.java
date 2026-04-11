@@ -27,8 +27,8 @@ public final class GuiMixin {
     )
     private void ignoreVanillaExtractCrosshair(
             GuiGraphicsExtractor guiGraphics,
-            RenderPipeline pipeline,
-            Identifier identifier,
+            RenderPipeline renderPipeline,
+            Identifier location,
             int x, int y, int width, int height
     ) {}
 
@@ -41,11 +41,11 @@ public final class GuiMixin {
             )
     )
     private void extractCrosshair(
-            GuiGraphicsExtractor guiGraphics,
+            GuiGraphicsExtractor graphics,
             DeltaTracker deltaTracker,
             CallbackInfo callbackInfo
     ) {
-        Targeted.crosshair.extract(guiGraphics, deltaTracker);
+        Targeted.crosshair.extract(graphics, deltaTracker);
     }
 
     private GuiMixin() {}

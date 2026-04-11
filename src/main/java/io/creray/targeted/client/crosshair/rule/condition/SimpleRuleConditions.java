@@ -15,7 +15,10 @@ public class SimpleRuleConditions {
 
     static {
         IS_LIVING_ENTITY = ctx -> ctx.entity() instanceof LivingEntity;
-        IS_WAXED_BLOCK = ctx -> BlockUtils.isWaxed(ctx.blockState());
+        IS_WAXED_BLOCK = ctx -> {
+            assert ctx.blockState() != null; // TODO: Add validation in mode compilation
+            return BlockUtils.isWaxed(ctx.blockState());
+        };
     }
 
     public void registerAll() {
