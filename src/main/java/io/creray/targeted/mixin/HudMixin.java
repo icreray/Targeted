@@ -3,8 +3,8 @@ package io.creray.targeted.mixin;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import io.creray.targeted.Targeted;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.Hud;
 import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
-@Mixin(Gui.class)
-public final class GuiMixin {
+@Mixin(Hud.class)
+public final class HudMixin {
 
     @SuppressWarnings("EmptyMethod")
     @Redirect(
@@ -48,5 +48,5 @@ public final class GuiMixin {
         Targeted.crosshair.extract(graphics, deltaTracker);
     }
 
-    private GuiMixin() {}
+    private HudMixin() {}
 }
