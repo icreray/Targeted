@@ -6,11 +6,11 @@ import io.creray.targeted.client.crosshair.mode.Mode;
 import io.creray.targeted.client.crosshair.mode.ModeBuilder;
 import lombok.experimental.UtilityClass;
 
-import static io.creray.targeted.client.resources.ModeDefinition.AnimationDefinition;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static io.creray.targeted.client.resources.ModeDefinition.AnimationDefinition;
 
 @UtilityClass
 public class ModeCompiler {

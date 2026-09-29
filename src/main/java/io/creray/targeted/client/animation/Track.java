@@ -7,7 +7,7 @@ public final class Track {
         Driver STATIC = () -> 1.0F;
 
         static Driver limitedBy(Track track, Track limiter) {
-            return () -> track.limitedBy(limiter);
+            return () -> Math.min(track.get(), limiter.get());
         }
 
         float get();
@@ -72,9 +72,5 @@ public final class Track {
 
     public float get() {
         return currentTime / DURATION;
-    }
-
-    public float limitedBy(Track other) {
-        return Math.min(get(), other.get());
     }
 }

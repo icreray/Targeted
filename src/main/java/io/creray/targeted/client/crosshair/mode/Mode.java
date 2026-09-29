@@ -36,7 +36,7 @@ public final class Mode {
     }
 
     public void extract(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
-        updateSliders(deltaTracker.getGameTimeDeltaTicks());
+        updateTracks(deltaTracker.getGameTimeDeltaTicks());
         for (var animation : animations) {
             animation.extractFrame(guiGraphics);
         }
@@ -64,9 +64,9 @@ public final class Mode {
         return tracks.length == 0 || tracks[0].isZero();
     }
 
-    private void updateSliders(float delta) {
-        for (var slider : tracks) {
-            slider.update(delta);
+    private void updateTracks(float delta) {
+        for (var track : tracks) {
+            track.update(delta);
         }
     }
 }
