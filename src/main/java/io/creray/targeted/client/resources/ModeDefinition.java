@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 public record ModeDefinition(
+    List<TrackDefinition> tracks,
     List<AnimationDefinition> animations
 ) {
     public static final Codec<ModeDefinition> CODEC = RecordCodecBuilder.<ModeDefinition>create(
         instance -> instance.group(
+            TrackDefinition.CODEC.listOf().fieldOf("tracks").forGetter(ModeDefinition::tracks),
             AnimationDefinition.CODEC.listOf().fieldOf("animations").forGetter(ModeDefinition::animations)
         ).apply(instance, ModeDefinition::new)
     ).validate(ModeDefinition::validate);
@@ -27,12 +29,14 @@ public record ModeDefinition(
     }
 
     public record AnimationDefinition(
-        TrackDefinition track,
+        String trackId,
+        Optional<String> limitedBy,
         List<Identifier> sprites
     ) {
         public static final Codec<AnimationDefinition> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
-                TrackDefinition.CODEC.fieldOf("track").forGetter(AnimationDefinition::track),
+                Codec.STRING.fieldOf("track_id").forGetter(AnimationDefinition::trackId),
+                Codec.STRING.optionalFieldOf("limited_by").forGetter(AnimationDefinition::limitedBy),
                 Identifier.CODEC.listOf().fieldOf("sprites").forGetter(AnimationDefinition::sprites)
             ).apply(instance, AnimationDefinition::new)
         );
@@ -41,15 +45,13 @@ public record ModeDefinition(
     public record TrackDefinition(
         String id,
         float duration,
-        TrackController controller,
-        Optional<String> limitedBy
+        TrackController controller
     ) {
         public static final Codec<TrackDefinition> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                 Codec.STRING.fieldOf("id").forGetter(TrackDefinition::id),
                 Codec.floatRange(0, 100).fieldOf("duration").forGetter(TrackDefinition::duration),
-                TrackController.CODEC.fieldOf("controller").forGetter(TrackDefinition::controller),
-                Codec.STRING.optionalFieldOf("limited_by").forGetter(TrackDefinition::limitedBy)
+                TrackController.CODEC.fieldOf("controller").forGetter(TrackDefinition::controller)
             ).apply(instance, TrackDefinition::new)
         );
     }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.creray.targeted.client.resources.ModeDefinition.AnimationDefinition;
+import static io.creray.targeted.client.resources.ModeDefinition.TrackDefinition;
 
 @UtilityClass
 public class ModeCompiler {
@@ -18,7 +19,7 @@ public class ModeCompiler {
         Map<String, Track> definedTracks = new HashMap<>();
         ModeBuilder builder = Mode.builder();
 
-        createTracks(definedTracks, builder, def.animations());
+        createTracks(definedTracks, builder, def.tracks());
         createAnimations(definedTracks, builder, def.animations());
 
         return builder.build();
@@ -27,11 +28,10 @@ public class ModeCompiler {
     private void createTracks(
         Map<String, Track> definedTracks,
         ModeBuilder builder,
-        List<AnimationDefinition> animations
+        List<TrackDefinition> tracks
     ) {
-        for (var animationDef : animations) {
-            var trackDef = animationDef.track();
-            definedTracks.computeIfAbsent(trackDef.id(), id -> {
+        for (var trackDef : tracks) {
+            definedTracks.computeIfAbsent(trackDef.id(), _ -> {
                 var track = new Track(trackDef.duration());
                 builder.addTrack(track, trackDef.controller());
                 return track;
@@ -45,10 +45,12 @@ public class ModeCompiler {
         List<AnimationDefinition> animations
     ) throws IllegalStateException {
         for (var animationDef : animations) {
-            var trackDef = animationDef.track();
-            var track = definedTracks.get(trackDef.id());
+            var trackId = animationDef.trackId();
+            var track = definedTracks.get(trackId);
+            if (track == null)
+                throw new IllegalStateException("Invalid track_id argument '" + trackId  + "'. It must reference a defined track");
 
-            Track.Driver trackDriver = trackDef.limitedBy()
+            Track.Driver trackDriver = animationDef.limitedBy()
                 .map(id -> createLimitedByDriver(track, definedTracks, id))
                 .orElse(track::get);
 

@@ -1,11 +1,20 @@
 {
+  "tracks": [
+    {
+      "id": "transition",
+      "duration": 8,
+      "controller": "targeted:transition_progress"
+    },
+    {
+      "id": "indicator",
+      "duration": 6,
+      "controller": "targeted:health_percent",
+      "limited_by": "transition"
+    }
+  ],
   "animations": [
     {
-      "track": {
-        "id": "transition",
-        "duration": 8,
-        "controller": "targeted:transition_progress"
-      },
+      "track_id": "transition",
       "sprites": [
         "targeted:crosshair/expand_0",
         "targeted:crosshair/expand_0",
@@ -13,12 +22,8 @@
       ]
     },
     {
-      "track": {
-        "id": "indicator",
-        "duration": 6,
-        "controller": "targeted:health_percent",
-        "limited_by": "transition"
-      },
+      "track_id": "indicator",
+      "limited_by": "transition",
       "sprites": [
         "targeted:crosshair/empty",
         "targeted:crosshair/health_indicator_0",
