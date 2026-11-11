@@ -40,8 +40,9 @@ public record BlockStateCondition(
     @Override
     public boolean matches(TargetContext context) {
         var targetState = context.blockState();
-        assert targetState != null;
-        return targetState.is(block) && (properties.isEmpty() || properties.get().matches(targetState));
+        return targetState != null
+            && targetState.is(block)
+            && (properties.isEmpty() || properties.get().matches(targetState));
     }
 
     @Override

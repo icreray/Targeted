@@ -8,8 +8,7 @@
     {
       "id": "indicator",
       "duration": 6,
-      "controller": "targeted:health_percent",
-      "limited_by": "transition"
+      "controller": "targeted:health_percent"
     }
   ],
   "animations": [
