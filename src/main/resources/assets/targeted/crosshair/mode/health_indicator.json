@@ -2,12 +2,12 @@
   "tracks": [
     {
       "id": "transition",
-      "duration": 4,
+      "duration": 6,
       "controller": "targeted:transition_progress"
     },
     {
       "id": "indicator",
-      "duration": 3,
+      "duration": 6,
       "controller": "targeted:health_percent"
     }
   ],
