@@ -11,10 +11,12 @@ public class TrackControllerTypes {
 
     public final TrackController.Type SIMPLE;
     public final TrackController.Type BLOCK_PROPERTY;
+    public final TrackController.Type DELAYED;
 
     static {
         SIMPLE = register("simple", ModRegistries.SIMPLE_TRACK_CONTROLLER.byNameCodec().fieldOf("id"));
         BLOCK_PROPERTY = register("block_property", BlockPropertyTrackController.CODEC);
+        DELAYED = register("delayed", DelayedTrackController.CODEC);
     }
 
     @SuppressWarnings("EmptyMethod")

@@ -47,8 +47,9 @@ public final class Crosshair {
             currentMode.enable();
         }
         else {
+            if (pendingMode == null) // Wasn't already disabled
+                currentMode.disable();
             pendingMode = selectedMode;
-            currentMode.disable();
         }
     }
 
