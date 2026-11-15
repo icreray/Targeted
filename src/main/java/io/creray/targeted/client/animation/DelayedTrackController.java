@@ -69,9 +69,12 @@ public final class DelayedTrackController implements TrackController {
     static {
         CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
-                Codec.intRange(0, 1000).optionalFieldOf("enable", 0).forGetter(self -> self.enableDelay),
-                Codec.intRange(0, 1000).optionalFieldOf("disable", 0).forGetter(self -> self.disableDelay),
-                TrackController.CODEC.fieldOf("controller").forGetter(self -> self.inner)
+                Codec.intRange(0, (int)Track.MAX_DURATION)
+                    .optionalFieldOf("enable", 0).forGetter(self -> self.enableDelay),
+                Codec.intRange(0, (int)Track.MAX_DURATION)
+                    .optionalFieldOf("disable", 0).forGetter(self -> self.disableDelay),
+                TrackController.CODEC
+                    .fieldOf("controller").forGetter(self -> self.inner)
             ).apply(instance, DelayedTrackController::new)
         );
     }

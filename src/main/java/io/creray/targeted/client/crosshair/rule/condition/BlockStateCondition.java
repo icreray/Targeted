@@ -22,8 +22,10 @@ public record BlockStateCondition(
 
     public static final MapCodec<BlockStateCondition> CODEC = RecordCodecBuilder.<BlockStateCondition>mapCodec(
         instance -> instance.group(
-            BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("block").forGetter(BlockStateCondition::block),
-            StatePropertiesPredicate.CODEC.optionalFieldOf("properties").forGetter(BlockStateCondition::properties)
+            BuiltInRegistries.BLOCK.holderByNameCodec()
+                .fieldOf("block").forGetter(BlockStateCondition::block),
+            StatePropertiesPredicate.CODEC
+                .optionalFieldOf("properties").forGetter(BlockStateCondition::properties)
         ).apply(instance, BlockStateCondition::new)
     ).validate(BlockStateCondition::validate);
 

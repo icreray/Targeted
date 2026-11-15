@@ -13,6 +13,8 @@ public final class Track {
         float get();
     }
 
+    public static final float MAX_DURATION = 1000.0F;
+
     public final float duration;
     private boolean isPaused;
     private float currentTime;
@@ -24,7 +26,7 @@ public final class Track {
     }
 
     public Track(float duration) {
-        assert duration >= 0;
+        assert duration > 0 && duration < MAX_DURATION;
         this.duration = duration;
         this.goalTime = duration;
     }

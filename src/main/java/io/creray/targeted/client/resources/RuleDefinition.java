@@ -17,10 +17,14 @@ public record RuleDefinition(
 ) {
     public static final Codec<RuleDefinition> CODEC = RecordCodecBuilder.create(
         instance -> instance.group(
-            Codec.INT.fieldOf("priority").forGetter(RuleDefinition::priority),
-            ModRegistries.MODE_TRIGGER.byNameCodec().fieldOf("trigger").forGetter(RuleDefinition::trigger),
-            RuleCondition.CODEC.listOf().fieldOf("conditions").forGetter(RuleDefinition::conditions),
-            Identifier.CODEC.fieldOf("mode").forGetter(RuleDefinition::mode)
+            Codec.INT
+                .fieldOf("priority").forGetter(RuleDefinition::priority),
+            ModRegistries.MODE_TRIGGER.byNameCodec()
+                .fieldOf("trigger").forGetter(RuleDefinition::trigger),
+            RuleCondition.CODEC.listOf()
+                .fieldOf("conditions").forGetter(RuleDefinition::conditions),
+            Identifier.CODEC
+                .fieldOf("mode").forGetter(RuleDefinition::mode)
         ).apply(instance, RuleDefinition::new)
     );
 }
