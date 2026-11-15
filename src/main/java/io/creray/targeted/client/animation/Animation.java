@@ -26,7 +26,7 @@ public final class Animation {
 
     public CrosshairSprite getFrame(float progress) {
         assert progress >= 0 && progress <= 1;
-        int frame = (int)(progress * (frames.length - 1));
+        int frame = Math.round(progress * (frames.length - 1));
         return frames[frame];
     }
 }

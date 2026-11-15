@@ -18,7 +18,7 @@ public record ModeDefinition(
         instance -> instance.group(
             TrackDefinition.CODEC.listOf()
                 .fieldOf("tracks").forGetter(ModeDefinition::tracks),
-            AnimationDefinition.CODEC.listOf(1, Integer.MIN_VALUE)
+            AnimationDefinition.CODEC.listOf(1, Integer.MAX_VALUE)
                 .fieldOf("animations").forGetter(ModeDefinition::animations)
         ).apply(instance, ModeDefinition::new)
     );
