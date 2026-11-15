@@ -24,7 +24,6 @@ public final class MinecraftMixin {
     )
     private void afterCrosshairPick(float partialTicks, CallbackInfo callback) {
         Targeted.crosshair.updateTarget(Target.extractFrom(self()));
-        Targeted.crosshair.tick();
     }
 
     @Unique
