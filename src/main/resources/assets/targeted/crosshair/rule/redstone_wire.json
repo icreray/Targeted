@@ -1,0 +1,11 @@
+{
+  "priority": 100,
+  "trigger": "targeted:target_block",
+  "conditions": [
+    {
+      "type": "targeted:block_state",
+      "block": "minecraft:redstone_wire"
+    }
+  ],
+  "mode": "targeted:redstone_indicator"
+}
