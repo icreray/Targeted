@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.creray.targeted.client.target.TargetContext;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -15,12 +14,9 @@ public final class DelayedTrackController implements TrackController {
 
     public static final MapCodec<DelayedTrackController> CODEC;
 
-    @Getter
-    private final int enableDelay;
-    @Getter
-    private final int disableDelay;
-    @Getter
-    private final TrackController inner;
+    public final int enableDelay;
+    public final int disableDelay;
+    public final TrackController inner;
 
     private State pendingState = State.DISABLED;
     private int ticks = 0;
@@ -73,9 +69,9 @@ public final class DelayedTrackController implements TrackController {
     static {
         CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
-                Codec.intRange(0, 1000).optionalFieldOf("enable", 0).forGetter(DelayedTrackController::enableDelay),
-                Codec.intRange(0, 1000).optionalFieldOf("disable", 0).forGetter(DelayedTrackController::disableDelay),
-                TrackController.CODEC.fieldOf("controller").forGetter(DelayedTrackController::inner)
+                Codec.intRange(0, 1000).optionalFieldOf("enable", 0).forGetter(self -> self.enableDelay),
+                Codec.intRange(0, 1000).optionalFieldOf("disable", 0).forGetter(self -> self.disableDelay),
+                TrackController.CODEC.fieldOf("controller").forGetter(self -> self.inner)
             ).apply(instance, DelayedTrackController::new)
         );
     }

@@ -13,7 +13,7 @@ public final class Track {
         float get();
     }
 
-    public final float DURATION;
+    public final float duration;
     private boolean isPaused;
     private float currentTime;
     private float goalTime;
@@ -25,13 +25,13 @@ public final class Track {
 
     public Track(float duration) {
         assert duration >= 0;
-        DURATION = duration;
-        goalTime = DURATION;
+        this.duration = duration;
+        this.goalTime = duration;
     }
 
     public void runForward() {
         isPaused = false;
-        goalTime = DURATION;
+        goalTime = duration;
     }
 
     public void runBackward() {
@@ -41,7 +41,7 @@ public final class Track {
 
     public void runTowards(float progress) {
         isPaused = false;
-        goalTime = progress * DURATION;
+        goalTime = progress * duration;
     }
 
     public void pause() {
@@ -71,6 +71,6 @@ public final class Track {
     }
 
     public float get() {
-        return currentTime / DURATION;
+        return currentTime / duration;
     }
 }

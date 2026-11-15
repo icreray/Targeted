@@ -4,7 +4,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 public final class Animation {
 
-    private final CrosshairSprite[] FRAMES;
+    private final CrosshairSprite[] frames;
     private final Track.Driver trackDriver;
 
     public Animation(CrosshairSprite ... frames) {
@@ -13,7 +13,7 @@ public final class Animation {
 
     public Animation(Track.Driver trackDriver, CrosshairSprite ... frames) {
         this.trackDriver = trackDriver;
-        this.FRAMES = frames;
+        this.frames = frames;
     }
 
     public void extractFrame(GuiGraphicsExtractor guiGraphics) {
@@ -26,7 +26,7 @@ public final class Animation {
 
     public CrosshairSprite getFrame(float progress) {
         assert progress >= 0 && progress <= 1;
-        int frame = (int)(progress * (FRAMES.length - 1));
-        return FRAMES[frame];
+        int frame = (int)(progress * (frames.length - 1));
+        return frames[frame];
     }
 }
