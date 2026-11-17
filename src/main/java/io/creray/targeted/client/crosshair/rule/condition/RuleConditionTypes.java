@@ -10,10 +10,16 @@ import net.minecraft.core.Registry;
 public class RuleConditionTypes {
 
     public final RuleCondition.Type SIMPLE;
+    public final RuleCondition.Type ALL;
+    public final RuleCondition.Type ANY;
+    public final RuleCondition.Type NOT;
     public final RuleCondition.Type BLOCK_STATE;
 
     static {
         SIMPLE = register("simple", ModRegistries.SIMPLE_RULE_CONDITION.byNameCodec().fieldOf("id"));
+        ALL = register("all", AllCondition.CODEC);
+        ANY = register("any", AnyCondition.CODEC);
+        NOT = register("not", NotCondition.CODEC);
         BLOCK_STATE = register("block_state", BlockStateCondition.CODEC);
     }
 
