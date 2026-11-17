@@ -1,0 +1,11 @@
+{
+  "priority": 100,
+  "trigger": "targeted:target_block",
+  "conditions": [
+    {
+      "type": "targeted:block_state",
+      "block": "minecraft:composter"
+    }
+  ],
+  "mode": "targeted:composter_indicator"
+}

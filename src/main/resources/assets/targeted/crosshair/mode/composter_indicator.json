@@ -1,0 +1,55 @@
+{
+  "tracks": [
+    {
+      "id": "transition",
+      "duration": 3,
+      "controller": {
+        "type": "targeted:delayed",
+        "disable": 6,
+        "controller": "targeted:transition_progress"
+      }
+    },
+    {
+      "id": "limiter_transition",
+      "duration": 6,
+      "controller": {
+        "type": "targeted:delayed",
+        "enable": 3,
+        "controller": "targeted:transition_progress"
+      }
+    },
+    {
+      "id": "indicator",
+      "duration": 6,
+      "controller": {
+        "type": "targeted:block_property",
+        "block": "minecraft:composter",
+        "property": "level"
+      }
+    }
+  ],
+  "animations": [
+    {
+      "track_id": "transition",
+      "sprites": [
+        "targeted:crosshair/box_0",
+        "targeted:crosshair/box_1",
+        "targeted:crosshair/box_2"
+      ]
+    },
+    {
+      "track_id": "indicator",
+      "limited_by": "limiter_transition",
+      "sprites": [
+        "targeted:crosshair/empty",
+        "targeted:crosshair/7_bars_0",
+        "targeted:crosshair/7_bars_1",
+        "targeted:crosshair/7_bars_2",
+        "targeted:crosshair/7_bars_3",
+        "targeted:crosshair/7_bars_4",
+        "targeted:crosshair/7_bars_5",
+        "targeted:crosshair/7_bars_6"
+      ]
+    }
+  ]
+}

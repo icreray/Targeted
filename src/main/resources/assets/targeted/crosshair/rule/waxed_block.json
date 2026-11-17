@@ -1,8 +1,0 @@
-{
-  "priority": 100,
-  "trigger": "targeted:target_block",
-  "conditions": [
-    "targeted:is_waxed_block"
-  ],
-  "mode": "targeted:expanded"
-}

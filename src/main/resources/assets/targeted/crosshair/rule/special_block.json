@@ -1,0 +1,56 @@
+{
+  "priority": 100,
+  "trigger": "targeted:target_block",
+  "conditions": [
+    {
+      "type": "targeted:any",
+      "conditions": [
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:suspicious_sand"
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:suspicious_gravel"
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:cave_vines",
+          "properties": {
+            "age": "25"
+          }
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:twisting_vines",
+          "properties": {
+            "age": "25"
+          }
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:weeping_vines",
+          "properties": {
+            "age": "25"
+          }
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:kelp",
+          "properties": {
+            "age": "25"
+          }
+        },
+        {
+          "type": "targeted:block_state",
+          "block": "minecraft:jukebox",
+          "properties": {
+            "has_record": "true"
+          }
+        },
+        "targeted:is_waxed_block"
+      ]
+    }
+  ],
+  "mode": "targeted:expanded"
+}
