@@ -5,7 +5,11 @@
   "name": "Targeted",
   "description": "Simple mod with animated functionality to crosshair",
   "authors": ["Creray"],
-  "contact": {},
+  "contact": {
+    "homepage": "https://modrinth.com/mod/targeted",
+    "issues": "https://github.com/icreray/Targeted/issues",
+    "sources": "https://github.com/icreray/Targeted/"
+  },
   "license": "All-Rights-Reserved",
   "icon": "resourcepacks/targeted_default/pack.png",
   "environment": "client",
