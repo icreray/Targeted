@@ -1,0 +1,10 @@
+{
+  "pack": {
+    "description": {
+        "translate": "pack.targeted_default.description",
+        "fallback": "Default crosshair modes"
+    },
+    "min_format": [88, 0],
+    "max_format": [97, 1]
+  }
+}

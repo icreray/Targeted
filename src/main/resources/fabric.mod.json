@@ -7,7 +7,7 @@
   "authors": ["Creray"],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/targeted/icon.png",
+  "icon": "resourcepacks/targeted_default/pack.png",
   "environment": "client",
   "entrypoints": {
     "client": [
